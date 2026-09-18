@@ -1,4 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
+import { Logo } from './Logo'
 import { usePortal } from '../state/portal'
 import { BRAND } from '../data/config'
 import { pct } from '../lib/format'
@@ -7,17 +8,20 @@ const navClass = ({ isActive }: { isActive: boolean }) =>
   `text-sm transition-colors ${isActive ? 'text-ink font-medium' : 'text-ink-2 hover:text-ink'}`
 
 export function Header() {
-  const { currentCustomer, cart, discountPct, logout } = usePortal()
+  const { currentCustomer, cart, discountPct, logout, openCart } = usePortal()
   const cartCases = cart.reduce((sum, i) => sum + i.cases, 0)
 
   return (
     <header className="no-print sticky top-0 z-20 border-b border-line bg-paper/90 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center gap-6 px-4 py-4 sm:px-6">
-        <Link to="/" className="shrink-0 leading-none">
+        {/* The roundel is the brewery's seal, the wordmark is the primary mark.
+            Below 44px the roundel's text ring stops being legible, so it is kept at 52px. */}
+        <Link to="/" className="flex shrink-0 items-center gap-3 leading-none">
+          <Logo className="h-13 w-auto" />
           <span className="font-display text-xl tracking-[0.12em] text-ink">
             {BRAND.shortName}
           </span>
-          <span className="ml-2.5 hidden border-l border-line pl-2.5 text-[11px] tracking-[0.16em] text-ink-3 uppercase sm:inline">
+          <span className="hidden border-l border-line pl-3 text-[11px] tracking-[0.16em] text-ink-3 uppercase lg:inline">
             {BRAND.portalName}
           </span>
         </Link>
@@ -61,9 +65,9 @@ export function Header() {
                 </svg>
               </Link>
 
-              <Link
-                to="/cart"
-                aria-label={`Cart, ${cartCases} cases`}
+              <button
+                onClick={openCart}
+                aria-label={`Your order, ${cartCases} cases`}
                 className="relative rounded-full border border-line bg-card p-2 text-ink-2 transition-colors hover:text-ink"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -75,7 +79,7 @@ export function Header() {
                     {cartCases}
                   </span>
                 )}
-              </Link>
+              </button>
 
               <button
                 onClick={logout}

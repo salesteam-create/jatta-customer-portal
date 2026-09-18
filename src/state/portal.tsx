@@ -64,6 +64,10 @@ interface PortalContextValue {
   cart: CartItem[]
   /** The discount rate in force for the logged-in customer. 0 when logged out. */
   discountPct: number
+  /** The slide-out cart. Deliberately not persisted: a refresh should not reopen it. */
+  cartOpen: boolean
+  openCart: () => void
+  closeCart: () => void
   login: (customerId: string) => void
   logout: () => void
   setCases: (productId: string, cases: number) => void
@@ -79,6 +83,7 @@ const PortalContext = createContext<PortalContextValue | null>(null)
 
 export function PortalProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<PersistedState>(load)
+  const [cartOpen, setCartOpen] = useState(false)
 
   useEffect(() => {
     try {
@@ -103,6 +108,7 @@ export function PortalProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const logout = useCallback(() => {
+    setCartOpen(false)
     setState((s) => ({ ...s, currentCustomerId: null, cart: [] }))
   }, [])
 
@@ -114,7 +120,12 @@ export function PortalProvider({ children }: { children: ReactNode }) {
     })
   }, [])
 
+  const openCart = useCallback(() => setCartOpen(true), [])
+  const closeCart = useCallback(() => setCartOpen(false), [])
+
+  /** Adding from the catalogue opens the drawer, so the basket is never a silent change. */
   const addCases = useCallback((productId: string, cases: number) => {
+    setCartOpen(true)
     setState((s) => {
       const existing = s.cart.find((i) => i.productId === productId)
       const next = Math.max(0, (existing?.cases ?? 0) + Math.floor(cases))
@@ -180,6 +191,7 @@ export function PortalProvider({ children }: { children: ReactNode }) {
         deliveryAddress: details.deliveryAddress,
       }
 
+      setCartOpen(false)
       setState((s) => ({ ...s, orders: [order, ...s.orders], cart: [] }))
       return order
     },
@@ -202,6 +214,9 @@ export function PortalProvider({ children }: { children: ReactNode }) {
     invoices: state.invoices,
     cart: state.cart,
     discountPct,
+    cartOpen,
+    openCart,
+    closeCart,
     login,
     logout,
     setCases,

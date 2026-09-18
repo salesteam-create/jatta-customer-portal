@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",
-    "publish:pages": "npm run build && rm -rf assets index.html && cp -r dist/assets ./assets && cp dist/index.html ./index.html"
+    "publish:pages": "npm run build && node scripts/publish-pages.mjs"
   },
   "dependencies": {
     "react": "^19.1.0",

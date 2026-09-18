@@ -3,6 +3,7 @@ import { usePortal, getCustomerType } from '../state/portal'
 import { Button, EmptyState, LinkButton } from '../components/Ui'
 import { formatDate, money, pct } from '../lib/format'
 import { BRAND, VAT_RATE } from '../data/config'
+import { Logo } from '../components/Logo'
 import { round2 } from '../lib/pricing'
 
 /**
@@ -45,6 +46,7 @@ export function InvoiceDetail() {
       <div className="sheet mx-auto max-w-3xl rounded-lg p-8 sm:p-12">
         <div className="flex flex-wrap items-start justify-between gap-6 border-b border-line pb-8">
           <div>
+            <Logo className="mb-3 h-16 w-auto" />
             <p className="font-display text-xl text-ink">{BRAND.name}</p>
             <p className="mt-2 text-sm text-ink-2">
               {BRAND.location}

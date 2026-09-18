@@ -16,14 +16,11 @@ import { usePortal } from '../state/portal'
 export function ProductCard({ product }: { product: Product }) {
   const { currentCustomer, discountPct, addCases } = usePortal()
   const [cases, setCases] = useState(1)
-  const [added, setAdded] = useState(false)
   const price = priceFor(product, discountPct)
 
   const handleAdd = () => {
     if (cases < 1) return
     addCases(product.id, cases)
-    setAdded(true)
-    window.setTimeout(() => setAdded(false), 1600)
   }
 
   return (
@@ -59,8 +56,8 @@ export function ProductCard({ product }: { product: Product }) {
               <PriceTag price={price} caseSize={product.caseSize} size="md" />
               <div className="mt-4 flex items-center gap-2">
                 <CaseStepper cases={cases} onChange={setCases} min={1} />
-                <Button onClick={handleAdd} className="flex-1" disabled={added}>
-                  {added ? 'Added' : 'Add to order'}
+                <Button onClick={handleAdd} className="flex-1">
+                  Add to order
                 </Button>
               </div>
             </>

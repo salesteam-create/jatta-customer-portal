@@ -51,12 +51,15 @@ The prototype exists to tell this sequence. Every build decision should serve it
 4. **Persona switch.** A restaurant and a distributor see different prices on the same product.
    This is the single most important moment in the demo. Make switching persona fast and obvious,
    ideally from the header, so it can be shown live without logging out.
-5. **Case ordering.** Quantity is in cases, never single bottles. Stepper control. Add to cart.
-6. **Cart and checkout.** Discounted line totals and order total. Delivery address, requested
+5. **Case ordering.** Quantity is in cases, never single cans. Stepper control. Add to order.
+6. **Cart drawer.** Adding a case slides out the cart, showing the line, the running discount and
+   the total. The header cart icon reopens it. Adding to the basket should never be a silent
+   change that only shows as a number on an icon.
+7. **Cart and checkout.** Discounted line totals and order total. Delivery address, requested
    delivery date, optional purchase order reference. Submit, then an order confirmation.
-7. **Account area.** Reached from a header icon once logged in. Profile, order history with an
+8. **Account area.** Reached from a header icon once logged in. Profile, order history with an
    order detail view, and an invoice list with an invoice that reads like a PDF.
-8. **Admin view.** A customer list with an editable discount percentage per customer. Changing it
+9. **Admin view.** A customer list with an editable discount percentage per customer. Changing it
    and then viewing that customer's catalogue shows the new pricing. This answers "how do I control
    it" and is worth building.
 
@@ -112,6 +115,14 @@ here comes from the label artwork, never from the design's caption text. See BRD
 
 **Suspect.** Every supplied asset prints 4,7 % ABV, across a pilsner, two sours and three pale
 ales. Treated as a placeholder. See BRD open question 19.
+
+## Brand mark
+
+`src/assets/brand/jatta-logo.png` is the supplied roundel, trimmed of the dead transparency the
+original carried on its right. It is a cream mark, so it works on both the paper background and the
+brown footer with no inverted variant. Below about 44px the ring of text stops being legible, which
+is why the header keeps it at 52px next to the JÅTTÅ wordmark. `app/public/` holds the favicon and
+apple touch icon generated from it.
 
 ## Product images
 

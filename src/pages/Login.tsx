@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { usePortal, getCustomerType } from '../state/portal'
 import { Card } from '../components/Ui'
+import { Logo } from '../components/Logo'
 import { effectiveDiscountPct } from '../lib/pricing'
 import { pct } from '../lib/format'
 
@@ -15,6 +16,7 @@ export function Login() {
   return (
     <div className="mx-auto max-w-3xl">
       <div className="text-center">
+        <Logo className="mx-auto mb-6 h-20 w-auto" />
         <h1 className="font-display text-3xl text-ink sm:text-4xl">Trade customer login</h1>
         <p className="mx-auto mt-3 max-w-xl text-ink-2">
           Log in to see your agreed pricing and place an order. Trade accounts are approved by the

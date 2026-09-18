@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getProductBySlug } from '../data/products'
 import { ProductImage } from '../components/ProductImage'
 import { PriceTag } from '../components/PriceTag'
@@ -10,7 +10,6 @@ import { usePortal } from '../state/portal'
 
 export function ProductDetail() {
   const { slug } = useParams()
-  const navigate = useNavigate()
   const product = slug ? getProductBySlug(slug) : undefined
   const { currentCustomer, discountPct, addCases } = usePortal()
   const [cases, setCases] = useState(1)
@@ -84,10 +83,7 @@ export function ProductDetail() {
                   <CaseStepper cases={cases} onChange={setCases} min={1} />
                   <Button
                     size="lg"
-                    onClick={() => {
-                      addCases(product.id, cases)
-                      navigate('/cart')
-                    }}
+                    onClick={() => addCases(product.id, cases)}
                   >
                     Add {cases} {cases === 1 ? 'case' : 'cases'} to order
                   </Button>
