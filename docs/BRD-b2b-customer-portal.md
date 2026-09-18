@@ -1,12 +1,12 @@
 # Business Requirements Document
-## Jatta Gardsbryggeri B2B Customer Portal
+## Jåttå Gårdsbryggeri B2B Customer Portal
 
 | | |
 |---|---|
-| Version | 0.1 (draft for internal review) |
+| Version | 0.2 (draft for internal review) |
 | Date | 18 September 2026 |
 | Status | Draft, not yet client approved |
-| Source | Judah's scoping notes, transcript of internal call |
+| Source | Judah's scoping notes, transcript of internal call, Jåttå v2 design files |
 | Owner | Kilowott |
 
 ---
@@ -14,7 +14,7 @@
 ## 1. Purpose of this document
 
 This document defines the business requirements for a B2B customer portal to be added to the
-Jatta Gardsbryggeri website. It exists for two reasons: to give the client a clear statement of
+Jåttå Gårdsbryggeri website. It exists for two reasons: to give the client a clear statement of
 what will be delivered as additional scope in the proposal, and to give the build team a single
 reference to estimate and build against.
 
@@ -25,7 +25,8 @@ technical implementation beyond the platform decision already taken.
 
 ## 2. Background
 
-Jatta Gardsbryggeri sells its products to trade customers as well as to the public. Today there
+Jåttå Gårdsbryggeri is an independent craft brewery in Jåttåvågen, Stavanger, selling a range
+of around ten canned beers. It sells to trade customers as well as to the public. Today there
 is no self-service way for a trade customer to see their own prices or place an order. Orders are
 handled manually outside any system.
 
@@ -34,7 +35,7 @@ to move repeat trade ordering into a self-service channel, so that the brewery s
 taking orders by phone and email, and trade customers can order at any time and see their own
 pricing without having to ask.
 
-A second, commercial goal for Kilowott: this is additional scope on the existing Jatta engagement
+A second, commercial goal for Kilowott: this is additional scope on the existing Jåttå engagement
 and needs to be scoped and priced as part of the proposal.
 
 ---
@@ -52,7 +53,7 @@ and needs to be scoped and priced as part of the proposal.
 
 ## 4. Platform decision
 
-The portal will be built on WooCommerce, on the same WordPress installation as the main Jatta
+The portal will be built on WooCommerce, on the same WordPress installation as the main Jåttå
 website. This was decided by Judah and is treated as fixed unless the build team raises a specific
 blocker.
 
@@ -65,7 +66,7 @@ no WordPress back end access at all. This is a firm requirement, not a preferenc
 
 | User type | Description | Access |
 |---|---|---|
-| Super admin | Jatta staff. Manages products, customers, pricing and orders. | Full WordPress and WooCommerce back end |
+| Super admin | Jåttå staff. Manages products, customers, pricing and orders. | Full WordPress and WooCommerce back end |
 | Restaurant | Trade customer buying for on-premise sale | Front end portal only |
 | Store / retailer | Trade customer reselling the product | Front end portal only |
 | Distributor | Trade customer buying for onward distribution | Front end portal only |
@@ -127,7 +128,13 @@ piece of work. See section 9.
 
 ### 6.5 Ordering
 
-- Trade customers order in cases, not in single units. Case size is a property of the product.
+- Trade customers order in cases, not in single units.
+- The designs state the brewery's delivery rule: "We deliver in special boxes with a capacity of
+  12 bottles. You can assemble a basket of different types of beer, but the sum of bottles must be
+  a multiple of 12." Every product is therefore treated as a case of 12, which keeps any
+  whole-case order a multiple of 12 automatically.
+- Whether trade customers may also mix different beers within one 12 unit box, as the public site
+  allows, is an open question. See section 9, question 13.
 - Quantity is entered per product as a number of cases.
 - Minimum order quantity and minimum order value rules must be confirmed. See section 9.
 - The customer can add to cart, review the cart, amend quantities and remove lines.
@@ -181,14 +188,14 @@ proposal so there is no ambiguity later:
 
 ## 8. Assumptions
 
-1. The portal is built on the same WordPress and WooCommerce installation as the main Jatta site.
+1. The portal is built on the same WordPress and WooCommerce installation as the main Jåttå site.
 2. Hosting is adequate for a logged-in, non-cacheable area of the site. Pricing pages cannot be
    served from a full page cache, which has a performance implication the host must support.
 3. Trade orders are paid on invoice, not by card at checkout.
 4. The brewery maintains product and pricing data itself after handover.
 5. The site is delivered in the language or languages already agreed for the main website build.
    Adding a second language to the portal specifically is not assumed.
-6. Jatta provides the trade customer list, customer types and discount percentages for setup.
+6. Jåttå provides the trade customer list, customer types and discount percentages for setup.
 
 ---
 
@@ -223,6 +230,24 @@ These need answers before the build starts. Several of them change the estimate.
 10. Does the brewery need to verify that a trade applicant holds the relevant licence before
     approving their account? If so, that check becomes part of the approval flow.
 
+**Raised by the design files**
+
+13. The product page states that orders ship in 12 unit boxes and that a customer may mix beers
+    provided the total is a multiple of 12. Does that mixing rule apply to trade customers too, or
+    do they order whole single-product cases only? Judah described case ordering, the designs
+    describe mixed boxes. Mixed boxes are a materially more complex cart and need confirming
+    before the build.
+14. The designs contradict themselves on the founding year: the homepage hero reads "EST. 2018"
+    and the brewery facts block reads "FOUNDED 2016". The prototype uses 2016. The client should
+    confirm which is right and the designs should be corrected.
+15. The Påskefjellet product page also contradicts itself: the tag row reads "4,7 % · 35 IBU" while
+    the characteristics block below reads "ABV 4.9 %" and "IBU 23". The prototype uses 4.7% and
+    35 IBU. Confirm the correct figures, and check the rest of the range for the same problem.
+16. No price appears anywhere in the design files. A full trade price list is needed, per product,
+    per case, ex VAT.
+17. Can volume is not legible in the designs. 330ml is assumed throughout the prototype and needs
+    confirming.
+
 **Technical**
 
 11. Is the WooCommerce site already live, or is the portal being built alongside the new site?
@@ -246,7 +271,7 @@ The portal is accepted when all of the following are demonstrably true on the st
 5. An administrator can change one customer's discount percentage and that customer's pricing
    updates, with no effect on any other customer.
 6. A customer can add cases to the cart, amend quantities, check out and receive an order
-   confirmation showing their discounted total.
+   confirmation showing their discounted total. Every order quantity is a multiple of 12 units.
 7. The customer can see that order in their front end order history at the pricing it was placed
    at.
 8. The customer can view and download an invoice reflecting their discounted pricing.
@@ -259,7 +284,7 @@ The portal is accepted when all of the following are demonstrably true on the st
 
 ## 11. Delivery approach
 
-**Phase 0, demonstration prototype.** A non-functional, clickable prototype that shows the portal
+**Phase 0, demonstration prototype.** Built, and in this repository. A clickable prototype that shows the portal
 concept: public catalogue without prices, login, prices revealed, discount display, case ordering,
 cart, order history, invoices and profile. Built as a standalone front end with mock data, not on
 WooCommerce, so that it can be produced quickly and demonstrated as a link. The purpose is to let

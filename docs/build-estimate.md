@@ -1,5 +1,5 @@
 # Build Estimate
-## Jatta Gardsbryggeri B2B Customer Portal
+## Jåttå Gårdsbryggeri B2B Customer Portal
 
 | | |
 |---|---|
@@ -65,13 +65,13 @@ The demo is a story, told in this order:
 | Account area: profile, order list, order detail | 2 to 2.5 | Three screens |
 | Invoice list and invoice view | 1 to 1.5 | Styled HTML that reads as a PDF, not a real PDF |
 | Admin view with editable discounts | 1 to 1.5 | Optional, recommended |
-| Mock data, realistic product and order content | 0.5 to 1 | Needs real Jatta product names to land well |
+| Mock data, realistic product and order content | 0.5 to 1 | Needs real Jåttå product names to land well |
 | Responsive pass and demo rehearsal fixes | 1 to 1.5 | |
 | **Total** | **12 to 18** | |
 
 ### 2.4 What drives it to the low or high end
 
-Low end if: the Figma designs are complete and cover most of these screens, real Jatta product
+Low end if: the Figma designs are complete and cover most of these screens, real Jåttå product
 content is available, and the admin view is dropped.
 
 High end if: designs need interpreting or only cover the public site, product content has to be

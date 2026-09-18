@@ -1,8 +1,8 @@
-# Jatta Gardsbryggeri B2B Customer Portal, demonstration prototype
+# Jåttå Gårdsbryggeri B2B Customer Portal, demonstration prototype
 
 ## What this repository is
 
-A clickable demonstration prototype of a B2B trade ordering portal for Jatta Gardsbryggeri, a
+A clickable demonstration prototype of a B2B trade ordering portal for Jåttå Gårdsbryggeri, a
 brewery. It is a sales asset. Judah will use it to show the client the portal concept while the
 proposal is being agreed.
 
@@ -22,7 +22,7 @@ the effort plan before making design decisions.
    the demo, disable it and make that obvious. A client may be handed this link.
 5. **Do not invent facts about the client.** If product names, prices, case sizes or customer names
    are not supplied, use the placeholders in the fixtures and flag clearly that they are
-   placeholders. Do not present invented detail as if it came from Jatta.
+   placeholders. Do not present invented detail as if it came from Jåttå.
 
 ## Stack
 
@@ -52,7 +52,8 @@ The prototype exists to tell this sequence. Every build decision should serve it
 
 ## Pricing rules to implement in the mock
 
-- Every product has a standard trade price and a case size.
+- Every product has a standard trade price and a case size of 12, per the delivery rule in the
+  designs.
 - Each customer type has a default discount percentage.
 - Each individual customer may have an override percentage. The override always wins.
 - Discount is a flat percentage across the whole range. There is no per product or per category
@@ -65,35 +66,46 @@ Three personas, one per customer type, so the price difference is demonstrable. 
 names are supplied, use clearly fictional placeholder businesses and keep them in one fixture file
 so they are easy to swap.
 
-| Type | Example default discount |
-|---|---|
-| Restaurant | 10 percent |
-| Store / retailer | 15 percent |
-| Distributor | 25 percent |
+| Persona | Type | Rate |
+|---|---|---|
+| Lysefjord Kro | Restaurant | 10 percent, type default |
+| Storhaug Matvare | Store / retailer | 15 percent, type default |
+| Rogaland Drikk AS | Distributor | 30 percent, per customer override above the 25 percent default |
+| Egersund Servering | Restaurant | 5 percent, per customer override below the 10 percent default |
 
-At least one persona should carry a per customer override so that the override behaviour is
-visible in the demo.
+Two personas carry overrides, one above its type default and one below, so the override rule is
+visible both ways during the demo.
 
 ## Design source
 
-Designs come from Figma. The link goes here once supplied:
+The v2 designs were supplied as a PNG export: homepage, a product page, header, footer and the
+logo. The Figma MCP connector could not read the file directly, because the connected account has
+view access only and the design-read tools require edit access.
 
-- Figma file: _pending_
+Palette, typography and brand copy in `src/index.css` and `src/data/config.ts` are sampled from
+that export. Playfair Display stands in for the editorial serif in the designs. If the brand has a
+licensed display face, swap the font import and `--font-display` and nothing else changes.
 
-Do not upload the `.fig` binary to this repository. Use the Figma connector to read the file
-directly from the link. If no link is available, build to a clean, restrained brewery aesthetic and
-flag clearly that the styling is provisional.
+## What is real and what is not
 
-## Content needed from the client side
+**Real, from the designs.** Brand name and wordmark, tagline "Norsk fra jord til brygg", location
+Jåttåvågen in Stavanger, the palette, product names, styles, and the ABVs marked "from designs" in
+`src/data/products.ts`.
 
-Track these here as they arrive. Placeholder content weakens the demo.
+**Invented, needs client confirmation.** Every trade price. Can volume, assumed 330ml. Trade
+customer names and addresses. Longer product descriptions and tasting notes, except Påskefjellet.
+The ABVs marked "assumed".
 
-- [ ] Figma file link
-- [ ] Real product names, formats, ABV, case sizes
-- [ ] Rough standard trade price points
-- [ ] Product photography or approved placeholder imagery
-- [ ] Two or three real trade customer names, or permission to invent them
-- [ ] Decision on whether the admin view is in scope for the demo
+## Content still needed from the client
+
+- [x] Designs
+- [x] Real product names and styles
+- [ ] Trade price list, per product, ex VAT
+- [ ] Can volume confirmation
+- [ ] Missing ABVs: Kjekkas, Preikestolen, Pådda, Flørli
+- [ ] Product photography, to replace the drawn cans in `CanArt.tsx`
+- [ ] Real trade customer names, or permission to keep the invented ones
+- [ ] Answer on the mixed 12 unit box rule, BRD open question 13
 
 ## Working rules
 

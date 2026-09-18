@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+/*
+ * Palette and type sampled from the Jåttå v2 design files.
+ *
+ * Playfair Display stands in for the editorial serif in the designs. If the brand has a
+ * licensed display face, swap the @import and --font-display and nothing else changes.
+ */
+@theme {
+  /* Surfaces */
+  --color-paper: #f7f2e8;
+  --color-paper-2: #f0e9db;
+  --color-card: #fffdf8;
+  --color-line: #e2d8c4;
+
+  /* Text */
+  --color-ink: #1a1613;
+  --color-ink-2: #5a5048;
+  --color-ink-3: #8d8175;
+
+  /* Brand, taken from the homepage and footer blocks */
+  --color-brand: #5c3a21;
+  --color-brand-2: #7a5130;
+  --color-forest: #3e5226;
+  --color-wheat: #e3cd9c;
+  --color-accent: #b8894a;
+
+  /* Status */
+  --color-good: #3e5226;
+  --color-alert: #9a3412;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* The small letterspaced uppercase labels used throughout the designs. */
+.eyebrow {
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+}
+
+/* Invoice view, so it reads like a printed document. */
+.sheet {
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.04),
+    0 8px 24px rgb(0 0 0 / 0.06);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .sheet {
+    box-shadow: none;
+  }
+  body {
+    background: #fff;
+  }
+}
