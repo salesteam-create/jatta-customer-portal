@@ -1,8 +1,21 @@
+# Kept for the day GitHub Pages is switched to the "GitHub Actions" source.
+#
+# It is manual-only today because Pages on this repository is currently set to
+# "Deploy from a branch", which serves the repository root. The built site is
+# committed to the root for that reason, and `npm run publish:pages` refreshes it.
+#
+# To move to this workflow instead:
+#   1. Settings, Pages, Source, choose "GitHub Actions".
+#   2. Run this workflow once from the Actions tab.
+#   3. Delete index.html, assets/ and .nojekyll from the repository root.
+#
+# Note: actions/configure-pages with `enablement: true` does not work here. The
+# default Actions token cannot create a Pages site, which is what failed on the
+# first attempt ("Resource not accessible by integration").
+
 name: Deploy prototype to GitHub Pages
 
 on:
-  push:
-    branches: [claude/amazing-brown-kjrz6u]
   workflow_dispatch:
 
 permissions:
@@ -10,7 +23,6 @@ permissions:
   pages: write
   id-token: write
 
-# Let a running deploy finish rather than cancelling it mid-publish.
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -30,11 +42,7 @@ jobs:
 
       - run: npm run build
 
-      # enablement: true turns the Pages site on the first time this runs,
-      # so nobody has to flip it by hand in repository settings.
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:

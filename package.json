@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "tsc -b --noEmit",
+    "publish:pages": "npm run build && rm -rf assets index.html && cp -r dist/assets ./assets && cp dist/index.html ./index.html"
   },
   "dependencies": {
     "react": "^19.1.0",
