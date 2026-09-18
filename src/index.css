@@ -2,6 +2,13 @@
 @import 'tailwindcss';
 
 /*
+ * Vite's root is app/, so Tailwind's automatic content detection does not reach the
+ * components. These point it back at the real source.
+ */
+@source '../src/**/*.{ts,tsx}';
+@source '../app/index.html';
+
+/*
  * Palette and type sampled from the Jåttå v2 design files.
  *
  * Playfair Display stands in for the editorial serif in the designs. If the brand has a

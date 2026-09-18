@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger'
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-40'
+  'inline-flex items-center justify-center gap-2 rounded-full font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-40'
 
 const variants: Record<Variant, string> = {
   primary: 'bg-brand text-white hover:bg-brand-2',

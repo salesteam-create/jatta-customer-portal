@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { products } from '../data/products'
+import { categories, products } from '../data/products'
 import { ProductCard } from '../components/ProductCard'
 import { usePortal } from '../state/portal'
 import { pct } from '../lib/format'
@@ -7,6 +8,9 @@ import { BRAND } from '../data/config'
 
 export function Catalogue() {
   const { currentCustomer, discountPct } = usePortal()
+  const [category, setCategory] = useState<string>('Alle')
+
+  const shown = category === 'Alle' ? products : products.filter((p) => p.category === category)
 
   return (
     <div>
@@ -60,18 +64,50 @@ export function Catalogue() {
         </div>
       )}
 
-      <div className="mb-6 flex items-baseline justify-between">
-        <h2 className="font-display text-xl text-ink">
-          {currentCustomer ? 'Your price list' : 'Our beers'}
-        </h2>
-        <p className="text-sm text-ink-3">{products.length} products</p>
+      <div className="mb-5 flex flex-wrap items-baseline justify-between gap-3">
+        <div>
+          <p className="eyebrow">Utvalgte øl</p>
+          <h2 className="mt-1 font-display text-2xl text-ink">
+            {currentCustomer ? 'Your price list' : 'Våre øl'}
+          </h2>
+        </div>
+        <p className="text-sm text-ink-3">
+          {shown.length} of {products.length} products
+        </p>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((p) => (
-          <ProductCard key={p.id} product={p} />
-        ))}
+      <div className="mb-8 flex flex-wrap gap-2">
+        {categories.map((c) => {
+          const active = c === category
+          const count = c === 'Alle' ? products.length : products.filter((p) => p.category === c).length
+          return (
+            <button
+              key={c}
+              onClick={() => setCategory(c)}
+              disabled={count === 0}
+              className={`rounded-full border px-5 py-2 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-35 ${
+                active
+                  ? 'border-brand bg-brand text-white'
+                  : 'border-line bg-card text-ink-2 hover:border-brand hover:text-ink'
+              }`}
+            >
+              {c}
+            </button>
+          )
+        })}
       </div>
+
+      {shown.length === 0 ? (
+        <p className="rounded-xl border border-line bg-card p-10 text-center text-ink-2">
+          Nothing in this category yet.
+        </p>
+      ) : (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {shown.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

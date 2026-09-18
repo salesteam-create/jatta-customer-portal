@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { usePortal } from '../state/portal'
 import { buildCartLines, cartTotals } from '../lib/cart'
-import { CanArt } from '../components/CanArt'
+import { ProductImage } from '../components/ProductImage'
 import { CaseStepper } from '../components/CaseStepper'
 import { Button, Card, EmptyState, LinkButton, PageHeading } from '../components/Ui'
 import { money, pct } from '../lib/format'
@@ -47,8 +47,11 @@ export function Cart() {
         <Card className="divide-y divide-line">
           {lines.map((line) => (
             <div key={line.product.id} className="flex flex-wrap items-center gap-4 p-5">
-              <Link to={`/products/${line.product.slug}`} className="shrink-0">
-                <CanArt product={line.product} className="h-20 w-auto" />
+              <Link
+                to={`/products/${line.product.slug}`}
+                className="shrink-0 overflow-hidden rounded-lg border border-line"
+              >
+                <ProductImage product={line.product} className="h-20 w-20" />
               </Link>
 
               <div className="min-w-40 flex-1">

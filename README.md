@@ -7,13 +7,20 @@ Gårdsbryggeri, an independent craft brewery in Jåttåvågen, Stavanger.
 
 ```
 npm install
-npm run dev      # development server
-npm run build    # static build into dist/
-npm run preview  # serve the built site
+npm run dev            # development server
+npm run build          # static build into dist/
+npm run publish:pages  # build, then refresh the copy GitHub Pages serves
 ```
 
-The build is static and uses hash routing, so `dist/` can be dropped on any host and deep links
-still work without server rewrite rules.
+The build is static and uses hash routing, so it can be dropped on any host and deep links still
+work without server rewrite rules.
+
+**Publishing.** GitHub Pages serves this repository's root, so the built `index.html` and `assets/`
+are committed there. Run `npm run publish:pages` after any change, then commit. Running only
+`npm run build` will not update the live site. The Vite source entry is `app/index.html`, kept out
+of the root so it cannot collide with the published build.
+
+Live: https://salesteam-create.github.io/jatta-customer-portal/
 
 ## What this is
 
@@ -34,5 +41,9 @@ That is the fastest way to show the same catalogue at three different discount r
 
 ## Before showing it to the client
 
-Prices are invented. So are the trade customer names and some ABVs. `CLAUDE.md` lists exactly what
-is real and what still needs confirming.
+Prices are invented, as are the trade customer names. Every ABV shown is 4,7 % because that is what
+every supplied asset prints, which is almost certainly a placeholder.
+
+Note also that the source designs caption each can with another product's name and style. Product
+data here is taken from the label artwork instead. `CLAUDE.md` lists exactly what is real and what
+still needs confirming, and `docs/BRD-b2b-customer-portal.md` section 9 has the open questions.

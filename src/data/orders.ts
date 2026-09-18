@@ -36,9 +36,9 @@ const seeds: OrderSeed[] = [
     status: 'Delivered',
     discountPct: 10,
     items: [
-      { productId: 'p-kjekkas', cases: 6 },
+      { productId: 'p-jattapils', cases: 6 },
       { productId: 'p-paskefjellet', cases: 4 },
-      { productId: 'p-mangoflort', cases: 2 },
+      { productId: 'p-blabaersafari', cases: 2 },
     ],
   },
   {
@@ -51,8 +51,8 @@ const seeds: OrderSeed[] = [
     status: 'Dispatched',
     discountPct: 10,
     items: [
-      { productId: 'p-kjekkas', cases: 8 },
-      { productId: 'p-skallegrim', cases: 3 },
+      { productId: 'p-jattapils', cases: 8 },
+      { productId: 'p-studen', cases: 3 },
     ],
   },
   {
@@ -66,7 +66,7 @@ const seeds: OrderSeed[] = [
     discountPct: 15,
     items: [
       { productId: 'p-paskefjellet', cases: 12 },
-      { productId: 'p-herliga-london', cases: 5 },
+      { productId: 'p-hanegal', cases: 5 },
     ],
   },
   {
@@ -79,9 +79,9 @@ const seeds: OrderSeed[] = [
     status: 'In production',
     discountPct: 15,
     items: [
-      { productId: 'p-kjekkas', cases: 10 },
-      { productId: 'p-skallegrim', cases: 6 },
-      { productId: 'p-fjaerisse', cases: 4 },
+      { productId: 'p-jattapils', cases: 10 },
+      { productId: 'p-studen', cases: 6 },
+      { productId: 'p-nr2', cases: 4 },
     ],
   },
   {
@@ -94,9 +94,9 @@ const seeds: OrderSeed[] = [
     status: 'Delivered',
     discountPct: 30,
     items: [
-      { productId: 'p-kjekkas', cases: 40 },
+      { productId: 'p-jattapils', cases: 40 },
       { productId: 'p-paskefjellet', cases: 35 },
-      { productId: 'p-skallegrim', cases: 20 },
+      { productId: 'p-studen', cases: 20 },
     ],
   },
   {
@@ -110,8 +110,8 @@ const seeds: OrderSeed[] = [
     discountPct: 30,
     items: [
       { productId: 'p-paskefjellet', cases: 50 },
-      { productId: 'p-herliga-london', cases: 18 },
-      { productId: 'p-fjaerisse', cases: 12 },
+      { productId: 'p-hanegal', cases: 18 },
+      { productId: 'p-nr2', cases: 12 },
     ],
   },
   {
@@ -124,8 +124,8 @@ const seeds: OrderSeed[] = [
     status: 'Dispatched',
     discountPct: 5,
     items: [
-      { productId: 'p-herliga-london', cases: 3 },
-      { productId: 'p-mangoflort', cases: 2 },
+      { productId: 'p-hanegal', cases: 3 },
+      { productId: 'p-blabaersafari', cases: 2 },
     ],
   },
 ]

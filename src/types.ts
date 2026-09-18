@@ -13,6 +13,10 @@ export interface Product {
   slug: string
   name: string
   style: string
+  /** The Norwegian style line printed on the can. */
+  styleNo: string
+  /** Used by the catalogue filter chips. */
+  category: string
   /** Short descriptors shown as pills on the product page, as in the designs. */
   tags: string[]
   abv: number
@@ -25,9 +29,10 @@ export interface Product {
   shortDescription: string
   description: string
   tastingNotes: string
-  /** Placeholder artwork colour, used until real product photography is supplied. */
-  artFrom: string
-  artTo: string
+  /** Supplied label artwork, or a cut-out can render. */
+  image: string
+  /** 'cover' fills the tile with flat label art. 'can' centres a cut-out can on a tint. */
+  imageFit: 'cover' | 'can'
   available: boolean
 }
 

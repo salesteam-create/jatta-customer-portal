@@ -247,6 +247,22 @@ These need answers before the build starts. Several of them change the estimate.
     per case, ex VAT.
 17. Can volume is not legible in the designs. 330ml is assumed throughout the prototype and needs
     confirming.
+18. **The designs pair product names with the wrong products, and this one matters.** In the
+    "Våre øl" grid, the X3 can is captioned "Studen", the Påskefjellet can is captioned
+    "Skallegrim", the Kjekkas can is captioned "Helnorsk Rabarbra", the Herliga London can is
+    captioned "X3", the Blåbærsafari can is captioned "Fjøsnisse" and the Bringebærsafari can is
+    captioned "Mangoflørt". The product page repeats the fault, with a "HJEM > ØL > STUDEN"
+    breadcrumb above Påskefjellet. These read as placeholder pairings rather than real data.
+    Anyone building the catalogue from the designs literally will ship wrong product information.
+    The client needs to supply a definitive product list, and the designs should be corrected.
+19. Every supplied asset prints 4,7 % ABV, across a pilsner, two fruited sours and three pale
+    ales. That is almost certainly one placeholder reused across the label mockups. Real ABVs are
+    needed per product.
+20. The full range is larger than any single design screen shows. Names seen across the designs
+    include Kjekkas, Påskefjellet, Preikestolen, Skallegrim, X3, Mangoflørt, Herliga London,
+    Fjøsnisse, Pådda, Flørli, Helnorsk Rabarbra, Studen, Hanegal, Jåttåpils, Blåbærsafari,
+    Bringebærsafari, Låven and #2. Confirm which are current, which are seasonal and which are
+    discontinued, because that decides how many products the portal actually lists.
 
 **Technical**
 

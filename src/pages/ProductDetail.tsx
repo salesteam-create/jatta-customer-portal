@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getProductBySlug } from '../data/products'
-import { CanArt } from '../components/CanArt'
+import { ProductImage } from '../components/ProductImage'
 import { PriceTag } from '../components/PriceTag'
 import { CaseStepper } from '../components/CaseStepper'
 import { Button, Card, EmptyState, LinkButton } from '../components/Ui'
@@ -34,12 +34,12 @@ export function ProductDetail() {
       </Link>
 
       <div className="mt-6 grid gap-10 lg:grid-cols-2">
-        <Card className="flex items-center justify-center bg-paper-2 py-12">
-          <CanArt product={product} className="h-80 w-auto" />
+        <Card className="overflow-hidden p-0">
+          <ProductImage product={product} className="aspect-[9/10] w-full" eager />
         </Card>
 
         <div>
-          <p className="text-xs tracking-wide text-ink-3 uppercase">{product.style}</p>
+          <p className="eyebrow">{product.styleNo}</p>
           <h1 className="mt-1 font-display text-3xl text-ink sm:text-4xl">{product.name}</h1>
           <p className="mt-2 text-ink-2">
             {product.abv.toFixed(1)}% ABV · {product.ibu} IBU · {product.volumeMl}ml · case of{' '}

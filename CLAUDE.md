@@ -29,6 +29,16 @@ the effort plan before making design decisions.
 Vite, React, TypeScript, Tailwind CSS, React Router. Chosen for fast setup and a clean static
 build. If you have a good reason to change this, say so before changing it.
 
+**The Vite entry is `app/index.html`, not the project root.** GitHub Pages serves this repository's
+root, so the built `index.html` is committed there. Two files called `index.html` in the root would
+collide and Vite would bundle its own previous output, which is a bug that already happened once.
+Because the Vite root is `app/`, Tailwind's automatic content detection does not reach the
+components, so `src/index.css` declares its sources explicitly. Do not remove those `@source` lines.
+
+After changing anything, run `npm run publish:pages`, not `npm run build`. The first rebuilds and
+refreshes the copy at the repository root that Pages actually serves. The second only writes
+`dist/` and the live site will not change.
+
 ## The demo story
 
 The prototype exists to tell this sequence. Every build decision should serve it.
@@ -88,22 +98,39 @@ licensed display face, swap the font import and `--font-display` and nothing els
 
 ## What is real and what is not
 
-**Real, from the designs.** Brand name and wordmark, tagline "Norsk fra jord til brygg", location
-Jåttåvågen in Stavanger, the palette, product names, styles, and the ABVs marked "from designs" in
-`src/data/products.ts`.
+**Real, from the designs and the supplied assets.** Brand name and wordmark, tagline "Norsk fra
+jord til brygg", location Jåttåvågen in Stavanger, the palette, the label artwork in
+`src/assets/products/`, and each product's name and style as printed on its own label.
 
 **Invented, needs client confirmation.** Every trade price. Can volume, assumed 330ml. Trade
-customer names and addresses. Longer product descriptions and tasting notes, except Påskefjellet.
-The ABVs marked "assumed".
+customer names and addresses. Product descriptions, tasting notes and IBU. Category assignments,
+inferred from the style for the catalogue filter.
+
+**Known wrong in the source designs, do not copy.** The "Våre øl" grid captions each can with
+another product's name, style and ABV, and the product page breadcrumb does the same. Product data
+here comes from the label artwork, never from the design's caption text. See BRD open question 18.
+
+**Suspect.** Every supplied asset prints 4,7 % ABV, across a pilsner, two sours and three pale
+ales. Treated as a placeholder. See BRD open question 19.
+
+## Product images
+
+`src/assets/products/` holds artwork cropped from the supplied exports. Six are flat square label
+designs, which fill the card. Låven and #2 are cut-out can renders on transparency, which are
+centred on a tinted tile. The `imageFit` field on each product picks between the two, and
+`ProductImage.tsx` is the only component that reads it.
 
 ## Content still needed from the client
 
 - [x] Designs
+- [x] Product label artwork
 - [x] Real product names and styles
 - [ ] Trade price list, per product, ex VAT
+- [ ] Real ABVs, since every asset shows 4,7 %
+- [ ] A definitive product list, see BRD open question 20
 - [ ] Can volume confirmation
-- [ ] Missing ABVs: Kjekkas, Preikestolen, Pådda, Flørli
-- [ ] Product photography, to replace the drawn cans in `CanArt.tsx`
+- [ ] Artwork for the products not yet supplied (Kjekkas, X3, Herliga London, Preikestolen,
+      Skallegrim, Mangoflørt, Fjøsnisse, Pådda, Flørli, Helnorsk Rabarbra)
 - [ ] Real trade customer names, or permission to keep the invented ones
 - [ ] Answer on the mixed 12 unit box rule, BRD open question 13
 
