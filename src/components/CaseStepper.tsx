@@ -1,27 +1,35 @@
 import { Button } from './Ui'
 
 /**
- * Trade customers order in whole cases, never in single cans, so this is the only
- * quantity control in the prototype.
+ * Customers order in whole cases, never in single cans, so this is the only quantity
+ * control in the prototype.
+ *
+ * The compact variant exists because the catalogue now runs six cards to a row.
  */
 export function CaseStepper({
   cases,
   onChange,
   min = 0,
+  compact = false,
 }: {
   cases: number
   onChange: (next: number) => void
   min?: number
+  compact?: boolean
 }) {
+  const pad = compact ? 'px-2' : 'px-3'
+  const width = compact ? 'w-8' : 'w-14'
+  const text = compact ? 'text-xs' : 'text-sm'
+
   return (
-    <div className="inline-flex items-center rounded-lg border border-line bg-card">
+    <div className="inline-flex items-center rounded-full border border-line bg-card">
       <Button
         variant="ghost"
         size="sm"
         aria-label="Remove one case"
         disabled={cases <= min}
         onClick={() => onChange(Math.max(min, cases - 1))}
-        className="rounded-r-none px-3"
+        className={`rounded-r-none ${pad}`}
       >
         &minus;
       </Button>
@@ -34,14 +42,14 @@ export function CaseStepper({
           onChange(Number.isNaN(parsed) ? min : Math.max(min, parsed))
         }}
         aria-label="Number of cases"
-        className="w-14 border-x border-line bg-transparent py-1.5 text-center text-sm font-medium text-ink focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+        className={`${width} ${text} border-x border-line bg-transparent py-1.5 text-center font-medium text-ink focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none`}
       />
       <Button
         variant="ghost"
         size="sm"
         aria-label="Add one case"
         onClick={() => onChange(cases + 1)}
-        className="rounded-l-none px-3"
+        className={`rounded-l-none ${pad}`}
       >
         +
       </Button>

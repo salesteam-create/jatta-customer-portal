@@ -18,13 +18,13 @@ export function AdminCustomers() {
   return (
     <div>
       <PageHeading
-        title="Trade customers"
+        title="Customers"
         subtitle="Set the rate each customer pays. A rate set here overrides the customer type default and applies to their next order."
       />
 
       <Card className="mb-6 border-accent/40 bg-wheat/25 p-4 text-sm text-ink-2">
         <strong className="text-ink">Brewery view.</strong> In the live site this sits inside the
-        WordPress administration area. Trade customers never see it.
+        WordPress administration area. Customers never see it.
       </Card>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-3">

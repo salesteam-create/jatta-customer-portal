@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom'
 import { DemoBar } from './DemoBar'
 import { Header } from './Header'
 import { Logo } from './Logo'
-import { CartDrawer } from './CartDrawer'
+import { MiniCart } from './MiniCart'
 import { BRAND } from '../data/config'
 
 export function Layout() {
@@ -10,8 +10,8 @@ export function Layout() {
     <div className="flex min-h-screen flex-col">
       <DemoBar />
       <Header />
-      <CartDrawer />
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-10 sm:px-6">
+      <MiniCart />
+      <main className="mx-auto w-full max-w-[90rem] flex-1 px-4 py-10 sm:px-6">
         <Outlet />
       </main>
       <footer className="no-print bg-brand text-paper">
@@ -29,7 +29,7 @@ export function Layout() {
             </p>
             <p className="mt-1">{BRAND.domain}</p>
             <p className="mt-6 text-xs text-paper/50">
-              Trade portal prototype, for demonstration only. Not a live ordering system.
+              Customer portal prototype, for demonstration only. Not a live ordering system.
             </p>
           </div>
         </div>

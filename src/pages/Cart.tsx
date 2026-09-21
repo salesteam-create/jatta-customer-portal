@@ -15,8 +15,8 @@ export function Cart() {
     return (
       <EmptyState
         title="Log in to place an order"
-        body="Ordering is available to approved trade customers."
-        action={<LinkButton to="/login">Trade customer login</LinkButton>}
+        body="Ordering is available to customers with an account."
+        action={<LinkButton to="/login">Log in</LinkButton>}
       />
     )
   }
@@ -106,7 +106,7 @@ export function Cart() {
               </div>
               {totals.savings > 0 && (
                 <div className="flex justify-between">
-                  <dt className="text-ink-2">Your discount, {pct(discountPct)}</dt>
+                  <dt className="text-ink-2">Discount, {pct(discountPct)}</dt>
                   <dd className="text-good">&minus;{money(totals.savings)}</dd>
                 </div>
               )}

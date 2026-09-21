@@ -64,8 +64,12 @@ interface PortalContextValue {
   cart: CartItem[]
   /** The discount rate in force for the logged-in customer. 0 when logged out. */
   discountPct: number
-  /** The slide-out cart. Deliberately not persisted: a refresh should not reopen it. */
-  cartOpen: boolean
+  /**
+   * The mini cart. Deliberately not persisted: a refresh should not reopen it.
+   * 'add' means it popped up on its own and should time out. 'user' means the customer
+   * opened it from the header and it should stay until they close it.
+   */
+  cartOpenedBy: 'add' | 'user' | null
   openCart: () => void
   closeCart: () => void
   login: (customerId: string) => void
@@ -83,7 +87,7 @@ const PortalContext = createContext<PortalContextValue | null>(null)
 
 export function PortalProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<PersistedState>(load)
-  const [cartOpen, setCartOpen] = useState(false)
+  const [cartOpenedBy, setCartOpenedBy] = useState<'add' | 'user' | null>(null)
 
   useEffect(() => {
     try {
@@ -108,7 +112,7 @@ export function PortalProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const logout = useCallback(() => {
-    setCartOpen(false)
+    setCartOpenedBy(null)
     setState((s) => ({ ...s, currentCustomerId: null, cart: [] }))
   }, [])
 
@@ -120,12 +124,12 @@ export function PortalProvider({ children }: { children: ReactNode }) {
     })
   }, [])
 
-  const openCart = useCallback(() => setCartOpen(true), [])
-  const closeCart = useCallback(() => setCartOpen(false), [])
+  const openCart = useCallback(() => setCartOpenedBy('user'), [])
+  const closeCart = useCallback(() => setCartOpenedBy(null), [])
 
-  /** Adding from the catalogue opens the drawer, so the basket is never a silent change. */
+  /** Adding pops the mini cart, so the basket is never a silent change. */
   const addCases = useCallback((productId: string, cases: number) => {
-    setCartOpen(true)
+    setCartOpenedBy('add')
     setState((s) => {
       const existing = s.cart.find((i) => i.productId === productId)
       const next = Math.max(0, (existing?.cases ?? 0) + Math.floor(cases))
@@ -183,7 +187,7 @@ export function PortalProvider({ children }: { children: ReactNode }) {
         placedAt: new Date().toISOString().slice(0, 10),
         requestedDelivery: details.requestedDelivery,
         poReference: details.poReference,
-        status: 'Received',
+        status: 'Awaiting confirmation',
         lines,
         subtotal,
         vat,
@@ -191,7 +195,7 @@ export function PortalProvider({ children }: { children: ReactNode }) {
         deliveryAddress: details.deliveryAddress,
       }
 
-      setCartOpen(false)
+      setCartOpenedBy(null)
       setState((s) => ({ ...s, orders: [order, ...s.orders], cart: [] }))
       return order
     },
@@ -214,7 +218,7 @@ export function PortalProvider({ children }: { children: ReactNode }) {
     invoices: state.invoices,
     cart: state.cart,
     discountPct,
-    cartOpen,
+    cartOpenedBy,
     openCart,
     closeCart,
     login,

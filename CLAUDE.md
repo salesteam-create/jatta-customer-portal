@@ -43,20 +43,24 @@ refreshes the copy at the repository root that Pages actually serves. The second
 
 The prototype exists to tell this sequence. Every build decision should serve it.
 
-1. **Public catalogue.** Products look appealing. No prices anywhere. No add to cart. A visible
-   prompt for trade customers to log in.
-2. **Login.** Choose a persona. Land back on the catalogue.
+1. **Public catalogue.** The ordinary site catalogue, six products to a row. No prices, no
+   ordering controls, and no portal chrome of its own. It must not look like a separate portal.
+2. **Login.** A real login screen, email and password. Any credentials work. It must never ask
+   which company to sign in as.
 3. **Prices appear.** Same page, now priced. Where a discount applies, the standard price is struck
    through with the customer's own price next to it and the discount percentage shown.
 4. **Persona switch.** A restaurant and a distributor see different prices on the same product.
    This is the single most important moment in the demo. Make switching persona fast and obvious,
    ideally from the header, so it can be shown live without logging out.
-5. **Case ordering.** Quantity is in cases, never single cans. Stepper control. Add to order.
-6. **Cart drawer.** Adding a case slides out the cart, showing the line, the running discount and
-   the total. The header cart icon reopens it. Adding to the basket should never be a silent
-   change that only shows as a number on an icon.
-7. **Cart and checkout.** Discounted line totals and order total. Delivery address, requested
-   delivery date, optional purchase order reference. Submit, then an order confirmation.
+5. **Case ordering.** Quantity is in cases of 24, never single cans. Stepper control.
+6. **Mini cart.** Adding pops a small panel under the header cart icon with the lines, the
+   discount and the total. It times out when it appeared by itself, and stays when opened from
+   the icon. It must never cover the catalogue or block the next add.
+7. **Cart and checkout.** Discounted line totals and order total. Company details prefilled from
+   the account and editable: company name, organisation number, VAT number, contact, phone,
+   invoicing email. Delivery address, requested delivery date, optional purchase order reference.
+   The button says Request order, not Place order, and carries a disclaimer that the brewery
+   reserves the right to confirm.
 8. **Account area.** Reached from a header icon once logged in. Profile, order history with an
    order detail view, and an invoice list with an invoice that reads like a PDF.
 9. **Admin view.** A customer list with an editable discount percentage per customer. Changing it
@@ -65,19 +69,26 @@ The prototype exists to tell this sequence. Every build decision should serve it
 
 ## Pricing rules to implement in the mock
 
-- Every product has a standard trade price and a case size of 12, per the delivery rule in the
-  designs.
+- Every product has a standard price and a case size of 24, as specified by Judah. This
+  contradicts the designs, which state 12 unit boxes. See BRD question 13.
 - Each customer type has a default discount percentage.
 - Each individual customer may have an override percentage. The override always wins.
 - Discount is a flat percentage across the whole range. There is no per product or per category
   discounting in this prototype, because the client has not confirmed they need it.
 - Displayed price, cart line total, order total and invoice total must always agree.
 
+## Never personalise the discount
+
+Judah's sharpest note, and it applies everywhere: never write "your agreed rate", "your discount"
+or "your rate". Show the percentage plainly. A customer who is told the rate is *theirs*
+immediately wonders whether someone else is getting a better one. The number is fine, the
+possessive is not.
+
 ## Demo personas
 
-Three personas, one per customer type, so the price difference is demonstrable. Until real customer
-names are supplied, use clearly fictional placeholder businesses and keep them in one fixture file
-so they are easy to swap.
+Four personas so the price difference is demonstrable. The login screen does not offer them: the
+prototype bar at the top of the page is the only way to switch, which is why it stays. Until real
+customer names are supplied, these are clearly fictional placeholders in one fixture file.
 
 | Persona | Type | Rate |
 |---|---|---|

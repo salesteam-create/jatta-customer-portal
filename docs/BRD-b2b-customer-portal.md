@@ -103,6 +103,9 @@ logic.
 ### 6.3 Pricing visibility
 
 - Once logged in, every product displays a price.
+- Pricing is never described to the customer as personal to them. The discount percentage may be
+  shown, but never as "your agreed rate" or "your discount". A customer told the rate is theirs
+  will ask whether another customer is getting a better one.
 - Where a discount applies, the product shows the standard trade price struck through, and the
   customer's own price next to it, with an indication of the discount applied.
 - Prices shown in the catalogue, in the cart, at checkout, on the order confirmation and on the
@@ -141,7 +144,12 @@ piece of work. See section 9.
 - The cart shows line level and order level totals at the customer's own pricing.
 - At checkout the customer confirms delivery address, requested delivery date and a purchase order
   reference if they use one.
-- On submission the customer receives an order confirmation by email, and the brewery receives an
+- Submission places an order **request**, not a confirmed sale. The brewery reserves the right to
+  confirm availability, quantities and the delivery date before accepting. This is stated at
+  checkout and on the confirmation screen.
+- At checkout the customer's company details are prefilled from their account and remain editable:
+  company name, organisation number, VAT number, contact person, phone and invoicing email.
+- On submission the customer receives an acknowledgement by email, and the brewery receives an
   order notification.
 
 ### 6.6 Customer account area
@@ -232,11 +240,12 @@ These need answers before the build starts. Several of them change the estimate.
 
 **Raised by the design files**
 
-13. The product page states that orders ship in 12 unit boxes and that a customer may mix beers
-    provided the total is a multiple of 12. Does that mixing rule apply to trade customers too, or
-    do they order whole single-product cases only? Judah described case ordering, the designs
-    describe mixed boxes. Mixed boxes are a materially more complex cart and need confirming
-    before the build.
+13. **Case size is contradicted, and it is unresolved.** The product page in the designs states
+    orders ship in 12 unit boxes, and that a customer may mix beers provided the total is a
+    multiple of 12. Reviewing the prototype on 21 September, Judah specified cases of 24. The
+    prototype now uses 24 on his instruction. Before this reaches a quote the client must confirm
+    which is correct, and whether mixed boxes apply, because a mixed-box cart is materially more
+    complex to build than whole single-product cases.
 14. The designs contradict themselves on the founding year: the homepage hero reads "EST. 2018"
     and the brewery facts block reads "FOUNDED 2016". The prototype uses 2016. The client should
     confirm which is right and the designs should be corrected.

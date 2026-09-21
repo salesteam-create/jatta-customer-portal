@@ -22,17 +22,19 @@ export const CURRENCY = 'NOK'
 export const VAT_RATE = 0.25
 
 /**
- * The designs state: "We deliver in special boxes with a capacity of 12 bottles. You can
- * assemble a basket of different types of beer, but the sum of bottles must be a multiple
- * of 12." Every product therefore ships in a 12 can case, which keeps any whole-case
- * order a multiple of 12 automatically. See BRD open question 13.
+ * 24 cans per case, as specified by Judah after reviewing the prototype.
+ *
+ * This contradicts the designs, whose product page states: "We deliver in special boxes
+ * with a capacity of 12 bottles. You can assemble a basket of different types of beer,
+ * but the sum of bottles must be a multiple of 12." The prototype follows Judah, but the
+ * contradiction is unresolved and matters for the production cart. See BRD question 13.
  */
-export const CASE_SIZE = 12
+export const CASE_SIZE = 24
 
 export const BRAND = {
   name: 'Jåttå Gårdsbryggeri',
   shortName: 'JÅTTÅ',
-  portalName: 'Trade Portal',
+  portalName: 'Customer Portal',
   tagline: 'Norsk fra jord til brygg',
   taglineEn: 'Norwegian, from soil to brew',
   location: 'Jåttåvågen, Stavanger',

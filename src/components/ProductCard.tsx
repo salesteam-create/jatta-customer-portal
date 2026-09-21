@@ -2,75 +2,86 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Product } from '../types'
 import { ProductImage } from './ProductImage'
-import { PriceTag } from './PriceTag'
 import { CaseStepper } from './CaseStepper'
 import { Button } from './Ui'
 import { priceFor } from '../lib/pricing'
 import { usePortal } from '../state/portal'
+import { money, pct } from '../lib/format'
 
 /**
- * Card layout follows the "Våre øl" grid in the designs: full-bleed artwork with the
- * ABV in a chip top right, and the name and style over the foot of the image. The
- * trade pricing and ordering controls sit below, which the public designs do not have.
+ * Compact catalogue card, sized to run six to a row.
+ *
+ * The long description that used to sit here is gone: at roughly 210px wide it pushed
+ * the price and the ordering controls below the fold, which is exactly the spread-out
+ * buying experience the card is meant to fix. The full copy lives on the product page.
  */
 export function ProductCard({ product }: { product: Product }) {
   const { currentCustomer, discountPct, addCases } = usePortal()
   const [cases, setCases] = useState(1)
   const price = priceFor(product, discountPct)
 
-  const handleAdd = () => {
-    if (cases < 1) return
-    addCases(product.id, cases)
-  }
-
   return (
-    <article className="flex flex-col overflow-hidden rounded-xl border border-line bg-card">
-      {/*
-        The designs overlay the name on the image, which works over photography. These
-        are flat labels that already carry the name and the ABV, so the caption sits
-        below the artwork instead of fighting with it.
-      */}
+    <article className="flex flex-col overflow-hidden rounded-lg border border-line bg-card">
       <Link to={`/products/${product.slug}`} className="block">
         <ProductImage product={product} className="aspect-[9/10] w-full" />
       </Link>
 
-      <div className="flex flex-1 flex-col p-5">
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="font-display text-lg leading-tight text-ink">
-            <Link to={`/products/${product.slug}`} className="hover:text-brand">
-              {product.name}
-            </Link>
-          </h3>
-          <span className="mt-1 shrink-0 text-[11px] tracking-[0.14em] text-ink-3 uppercase">
-            {product.category}
-          </span>
-        </div>
-        <p className="mt-1 text-xs text-ink-3">
-          {product.styleNo} · {product.abv.toFixed(1).replace('.', ',')}% · {product.volumeMl}ml
+      <div className="flex flex-1 flex-col p-3">
+        <h3 className="font-display text-sm leading-tight text-ink">
+          <Link to={`/products/${product.slug}`} className="hover:text-brand">
+            {product.name}
+          </Link>
+        </h3>
+        <p className="mt-0.5 text-[11px] leading-tight text-ink-3">
+          {product.style} · {product.abv.toFixed(1).replace('.', ',')}%
         </p>
-        <p className="mt-3 flex-1 text-sm text-ink-2">{product.shortDescription}</p>
 
-        <div className="mt-5 border-t border-line pt-4">
+        <div className="mt-auto pt-3">
           {currentCustomer ? (
             <>
-              <PriceTag price={price} caseSize={product.caseSize} size="md" />
-              <div className="mt-4 flex items-center gap-2">
-                <CaseStepper cases={cases} onChange={setCases} min={1} />
-                <Button onClick={handleAdd} className="flex-1">
-                  Add to order
+              {/* Three short lines rather than two long ones: at this width a combined
+                  price and case line wraps mid-phrase. */}
+              {price.hasDiscount && (
+                <p className="text-[11px] leading-none text-ink-3 line-through">
+                  {money(price.standardCasePrice)}
+                </p>
+              )}
+              <div className="mt-0.5 flex items-baseline gap-1.5">
+                <span className="font-display text-base leading-none text-ink">
+                  {money(price.discountedCasePrice)}
+                </span>
+                {price.hasDiscount && (
+                  <span className="text-[11px] font-medium text-brand">
+                    {pct(price.discountPct)} off
+                  </span>
+                )}
+              </div>
+              <p className="mt-1 text-[11px] leading-tight text-ink-3">
+                {money(price.discountedUnitPrice)} per can
+                <br />
+                Case of {product.caseSize}
+              </p>
+
+              {/* Wraps rather than clips: the card is narrower at two and four columns
+                  than it is at six, and the stepper plus button will not always fit. */}
+              <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
+                <CaseStepper cases={cases} onChange={setCases} min={1} compact />
+                <Button
+                  size="sm"
+                  onClick={() => cases >= 1 && addCases(product.id, cases)}
+                  className="min-w-16 flex-1 px-2"
+                >
+                  Add
                 </Button>
               </div>
             </>
           ) : (
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-sm text-ink-3">Pricing for trade customers</p>
-              <Link
-                to="/login"
-                className="text-sm font-medium text-brand underline underline-offset-4 hover:text-brand-2"
-              >
-                Log in
-              </Link>
-            </div>
+            <Link
+              to="/login"
+              className="block text-xs font-medium text-brand underline underline-offset-4 hover:text-brand-2"
+            >
+              Log in to see prices
+            </Link>
           )}
         </div>
       </div>

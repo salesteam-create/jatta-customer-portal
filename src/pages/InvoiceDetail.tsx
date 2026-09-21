@@ -121,7 +121,7 @@ export function InvoiceDetail() {
                   <div className="text-ink">{line.productName}</div>
                   <div className="text-xs text-ink-3">
                     Case of {line.caseSize}
-                    {line.discountPct > 0 && ` · ${pct(line.discountPct)} trade discount applied`}
+                    {line.discountPct > 0 && ` · ${pct(line.discountPct)} discount applied`}
                   </div>
                 </td>
                 <td className="py-3 text-right text-ink-2">{line.cases}</td>
@@ -153,8 +153,8 @@ export function InvoiceDetail() {
 
         <p className="mt-10 border-t border-line pt-6 text-xs text-ink-3">
           {discountPct > 0
-            ? `All prices reflect the ${pct(discountPct)} trade discount agreed with ${currentCustomer.companyName}.`
-            : 'All prices are standard trade prices.'}{' '}
+            ? `All prices include a ${pct(discountPct)} discount.`
+            : 'All prices are standard list prices.'}{' '}
           Payment due within 30 days of the invoice date.
         </p>
       </div>

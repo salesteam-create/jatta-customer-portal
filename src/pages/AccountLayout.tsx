@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom'
-import { usePortal, getCustomerType } from '../state/portal'
+import { usePortal } from '../state/portal'
 import { EmptyState, LinkButton, PageHeading } from '../components/Ui'
 import { pct } from '../lib/format'
 
@@ -17,19 +17,17 @@ export function AccountLayout() {
       <EmptyState
         title="Log in to see your account"
         body="Your profile, orders and invoices are available once you are logged in."
-        action={<LinkButton to="/login">Trade customer login</LinkButton>}
+        action={<LinkButton to="/login">Log in</LinkButton>}
       />
     )
   }
-
-  const type = getCustomerType(currentCustomer.type)
 
   return (
     <div>
       <PageHeading
         title="Your account"
-        subtitle={`${currentCustomer.companyName} · ${type.label} · ${
-          discountPct > 0 ? `${pct(discountPct)} trade discount` : 'standard trade price'
+        subtitle={`${currentCustomer.companyName} · ${
+          discountPct > 0 ? `${pct(discountPct)} discount` : 'standard price'
         }`}
       />
 

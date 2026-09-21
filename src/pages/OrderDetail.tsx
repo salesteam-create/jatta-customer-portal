@@ -82,7 +82,7 @@ export function OrderDetail() {
               {savings > 0 && (
                 <div className="flex justify-between">
                   <dt className="text-ink-2">
-                    Discount at {pct(order.lines[0]?.discountPct ?? 0)}
+                    Discount, {pct(order.lines[0]?.discountPct ?? 0)}
                   </dt>
                   <dd className="text-good">&minus;{money(savings)}</dd>
                 </div>

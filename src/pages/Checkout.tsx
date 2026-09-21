@@ -21,13 +21,23 @@ export function Checkout() {
   const [address, setAddress] = useState(
     currentCustomer?.deliveryAddress ?? { line1: '', postcode: '', city: '', country: 'Norway' },
   )
+  // Prefilled from the account, but editable: a customer may invoice to a different
+  // address or contact than the one on file.
+  const [company, setCompany] = useState({
+    companyName: currentCustomer?.companyName ?? '',
+    orgNumber: currentCustomer?.orgNumber ?? '',
+    vatNumber: currentCustomer?.vatNumber ?? '',
+    contactName: currentCustomer?.contactName ?? '',
+    invoiceEmail: currentCustomer?.email ?? '',
+    phone: currentCustomer?.phone ?? '',
+  })
 
   if (!currentCustomer) {
     return (
       <EmptyState
         title="Log in to place an order"
-        body="Ordering is available to approved trade customers."
-        action={<LinkButton to="/login">Trade customer login</LinkButton>}
+        body="Ordering is available to customers with an account."
+        action={<LinkButton to="/login">Log in</LinkButton>}
       />
     )
   }
@@ -52,10 +62,66 @@ export function Checkout() {
 
   return (
     <div>
-      <PageHeading title="Checkout" subtitle="Confirm the delivery details and place your order." />
+      <PageHeading title="Checkout" subtitle="Confirm your details and send your order request." />
 
       <div className="grid gap-8 lg:grid-cols-[1fr_20rem]">
         <div className="space-y-6">
+          <Card className="p-6">
+            <h2 className="font-display text-lg text-ink">Company details</h2>
+            <p className="mt-1 text-sm text-ink-2">
+              Taken from your account. Change anything that should be different on this order.
+            </p>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <div className="sm:col-span-2">
+                <Field label="Company name">
+                  <input
+                    className={inputClass}
+                    value={company.companyName}
+                    onChange={(e) => setCompany({ ...company, companyName: e.target.value })}
+                  />
+                </Field>
+              </div>
+              <Field label="Organisation number">
+                <input
+                  className={inputClass}
+                  value={company.orgNumber}
+                  onChange={(e) => setCompany({ ...company, orgNumber: e.target.value })}
+                />
+              </Field>
+              <Field label="VAT number">
+                <input
+                  className={inputClass}
+                  value={company.vatNumber}
+                  onChange={(e) => setCompany({ ...company, vatNumber: e.target.value })}
+                />
+              </Field>
+              <Field label="Contact person">
+                <input
+                  className={inputClass}
+                  value={company.contactName}
+                  onChange={(e) => setCompany({ ...company, contactName: e.target.value })}
+                />
+              </Field>
+              <Field label="Phone">
+                <input
+                  className={inputClass}
+                  value={company.phone}
+                  onChange={(e) => setCompany({ ...company, phone: e.target.value })}
+                />
+              </Field>
+              <div className="sm:col-span-2">
+                <Field label="Invoicing email" hint="Where the invoice for this order is sent.">
+                  <input
+                    type="email"
+                    className={inputClass}
+                    value={company.invoiceEmail}
+                    onChange={(e) => setCompany({ ...company, invoiceEmail: e.target.value })}
+                  />
+                </Field>
+              </div>
+            </div>
+          </Card>
+
           <Card className="p-6">
             <h2 className="font-display text-lg text-ink">Delivery address</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -108,10 +174,15 @@ export function Checkout() {
           </Card>
 
           <Card className="p-6">
-            <h2 className="font-display text-lg text-ink">Payment</h2>
+            <h2 className="font-display text-lg text-ink">Payment and confirmation</h2>
             <p className="mt-2 text-sm text-ink-2">
-              This order will be invoiced to {currentCustomer.companyName} on your agreed account
-              terms. No payment is taken at checkout.
+              This order will be invoiced to {company.companyName} on account terms. No payment is
+              taken here.
+            </p>
+            <p className="mt-3 rounded-lg bg-paper-2 p-3 text-sm text-ink-2">
+              Submitting this form places an order request. Jåttå Gårdsbryggeri reserves the right
+              to confirm the order, including availability, quantities and the delivery date,
+              before it is accepted. You will receive a confirmation by email.
             </p>
           </Card>
         </div>
@@ -132,7 +203,7 @@ export function Checkout() {
             <dl className="mt-4 space-y-2 text-sm">
               {totals.savings > 0 && (
                 <div className="flex justify-between">
-                  <dt className="text-ink-2">Your discount, {pct(discountPct)}</dt>
+                  <dt className="text-ink-2">Discount, {pct(discountPct)}</dt>
                   <dd className="text-good">&minus;{money(totals.savings)}</dd>
                 </div>
               )}
@@ -150,8 +221,11 @@ export function Checkout() {
               </div>
             </dl>
             <Button size="lg" className="mt-6 w-full" onClick={submit}>
-              Place order
+              Request order
             </Button>
+            <p className="mt-3 text-xs text-ink-3">
+              Subject to confirmation by the brewery.
+            </p>
           </Card>
         </div>
       </div>

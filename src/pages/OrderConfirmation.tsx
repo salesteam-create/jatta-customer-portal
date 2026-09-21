@@ -27,9 +27,10 @@ export function OrderConfirmation() {
           </svg>
         </div>
 
-        <h1 className="mt-5 font-display text-3xl text-ink">Order received</h1>
+        <h1 className="mt-5 font-display text-3xl text-ink">Order request received</h1>
         <p className="mt-2 text-ink-2">
-          Thank you. We have sent a confirmation to your registered email address.
+          Thank you. We have sent a copy to your invoicing email address and the brewery will
+          confirm your order shortly.
         </p>
 
         <dl className="mt-8 divide-y divide-line border-y border-line text-left text-sm">
@@ -63,6 +64,11 @@ export function OrderConfirmation() {
             Back to the catalogue
           </LinkButton>
         </div>
+
+        <p className="mx-auto mt-8 max-w-md rounded-lg bg-paper-2 p-3 text-sm text-ink-2">
+          Jåttå Gårdsbryggeri reserves the right to confirm this order, including availability,
+          quantities and the delivery date, before it is accepted.
+        </p>
 
         <p className="mt-6 text-xs text-ink-3">
           Your invoice will appear under{' '}

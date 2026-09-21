@@ -72,7 +72,7 @@ export interface OrderLine {
   lineTotal: number
 }
 
-export type OrderStatus = 'Received' | 'In production' | 'Dispatched' | 'Delivered'
+export type OrderStatus = 'Awaiting confirmation' | 'Confirmed' | 'Dispatched' | 'Delivered'
 
 export interface Order {
   id: string

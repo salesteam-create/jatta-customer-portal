@@ -94,13 +94,13 @@ export function ProductDetail() {
               </>
             ) : (
               <div>
-                <p className="font-display text-lg text-ink">Trade pricing</p>
+                <p className="font-display text-lg text-ink">Pricing</p>
                 <p className="mt-1 text-sm text-ink-2">
-                  Prices and ordering are available to approved trade customers. Log in to see your
-                  rate.
+                  Prices and ordering are available to customers with an account. Log in to see
+                  prices.
                 </p>
                 <LinkButton to="/login" className="mt-4">
-                  Trade customer login
+                  Log in
                 </LinkButton>
               </div>
             )}

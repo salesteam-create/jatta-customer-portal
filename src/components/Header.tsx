@@ -13,7 +13,7 @@ export function Header() {
 
   return (
     <header className="no-print sticky top-0 z-20 border-b border-line bg-paper/90 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center gap-6 px-4 py-4 sm:px-6">
+      <div className="mx-auto flex max-w-[90rem] items-center gap-6 px-4 py-4 sm:px-6">
         {/* The roundel is the brewery's seal, the wordmark is the primary mark.
             Below 44px the roundel's text ring stops being legible, so it is kept at 52px. */}
         <Link to="/" className="flex shrink-0 items-center gap-3 leading-none">
@@ -50,7 +50,7 @@ export function Header() {
                   {currentCustomer.companyName}
                 </div>
                 <div className="text-xs leading-tight text-ink-3">
-                  {discountPct > 0 ? `${pct(discountPct)} trade discount` : 'Standard trade price'}
+                  {discountPct > 0 ? `${pct(discountPct)} discount` : 'Standard price'}
                 </div>
               </div>
 
@@ -66,6 +66,7 @@ export function Header() {
               </Link>
 
               <button
+                data-cart-toggle
                 onClick={openCart}
                 aria-label={`Your order, ${cartCases} cases`}
                 className="relative rounded-full border border-line bg-card p-2 text-ink-2 transition-colors hover:text-ink"
@@ -93,7 +94,7 @@ export function Header() {
               to="/login"
               className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-2"
             >
-              Trade login
+              Log in
             </Link>
           )}
         </div>

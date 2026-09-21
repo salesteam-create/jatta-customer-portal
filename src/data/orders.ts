@@ -76,7 +76,7 @@ const seeds: OrderSeed[] = [
     placedAt: '2026-09-15',
     requestedDelivery: '2026-09-22',
     poReference: 'SM-9948',
-    status: 'In production',
+    status: 'Confirmed',
     discountPct: 15,
     items: [
       { productId: 'p-jattapils', cases: 10 },
@@ -106,7 +106,7 @@ const seeds: OrderSeed[] = [
     placedAt: '2026-09-16',
     requestedDelivery: '2026-09-25',
     poReference: 'RD-2026-0903',
-    status: 'Received',
+    status: 'Awaiting confirmation',
     discountPct: 30,
     items: [
       { productId: 'p-paskefjellet', cases: 50 },

@@ -72,9 +72,9 @@ export function Profile() {
             <dd className="text-right text-ink">{type.label}</dd>
           </div>
           <div className="flex justify-between gap-4 py-3">
-            <dt className="text-ink-2">Trade discount</dt>
+            <dt className="text-ink-2">Discount</dt>
             <dd className="text-right font-medium text-brand">
-              {discountPct > 0 ? `${pct(discountPct)} off list` : 'Standard trade price'}
+              {discountPct > 0 ? `${pct(discountPct)} off list` : 'Standard price'}
             </dd>
           </div>
           <div className="flex justify-between gap-4 py-3">

@@ -5,7 +5,7 @@ import { formatDate, money } from '../lib/format'
 import type { OrderStatus } from '../types'
 
 const tone = (status: OrderStatus) =>
-  status === 'Delivered' ? 'good' : status === 'Received' ? 'accent' : 'neutral'
+  status === 'Delivered' ? 'good' : status === 'Awaiting confirmation' ? 'accent' : 'neutral'
 
 export function Orders() {
   const { currentCustomer, orders } = usePortal()
