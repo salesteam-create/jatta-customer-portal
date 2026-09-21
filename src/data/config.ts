@@ -33,7 +33,6 @@ export const CASE_SIZE = 24
 
 export const BRAND = {
   name: 'Jåttå Gårdsbryggeri',
-  shortName: 'JÅTTÅ',
   portalName: 'Customer Portal',
   tagline: 'Norsk fra jord til brygg',
   taglineEn: 'Norwegian, from soil to brew',

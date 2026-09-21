@@ -14,14 +14,11 @@ export function Header() {
   return (
     <header className="no-print sticky top-0 z-20 border-b border-line bg-paper/90 backdrop-blur">
       <div className="mx-auto flex max-w-[90rem] items-center gap-6 px-4 py-4 sm:px-6">
-        {/* The roundel is the brewery's seal, the wordmark is the primary mark.
-            Below 44px the roundel's text ring stops being legible, so it is kept at 52px. */}
+        {/* The roundel already reads JÅTTÅ GÅRDSBRYGGERI, so no wordmark beside it.
+            It stays at 52px, below which the ring of text stops being legible. */}
         <Link to="/" className="flex shrink-0 items-center gap-3 leading-none">
           <Logo className="h-13 w-auto" />
-          <span className="font-display text-xl tracking-[0.12em] text-ink">
-            {BRAND.shortName}
-          </span>
-          <span className="hidden border-l border-line pl-3 text-[11px] tracking-[0.16em] text-ink-3 uppercase lg:inline">
+          <span className="hidden border-l border-line pl-3 text-[11px] tracking-[0.16em] text-ink-3 uppercase sm:inline">
             {BRAND.portalName}
           </span>
         </Link>

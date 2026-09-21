@@ -132,8 +132,12 @@ ales. Treated as a placeholder. See BRD open question 19.
 `src/assets/brand/jatta-logo.png` is the supplied roundel, trimmed of the dead transparency the
 original carried on its right. It is a cream mark, so it works on both the paper background and the
 brown footer with no inverted variant. Below about 44px the ring of text stops being legible, which
-is why the header keeps it at 52px next to the JÅTTÅ wordmark. `app/public/` holds the favicon and
-apple touch icon generated from it.
+is why the header keeps it at 52px. `app/public/` holds the favicon and apple touch icon generated
+from it.
+
+**Do not set the name in type beside the logo.** The roundel already reads JÅTTÅ GÅRDSBRYGGERI, so
+the header carries the mark and the Customer Portal label only, and the footer carries the mark and
+the tagline only.
 
 ## Product images
 

@@ -16,12 +16,10 @@ export function Layout() {
       </main>
       <footer className="no-print bg-brand text-paper">
         <div className="mx-auto max-w-7xl px-4 py-14 text-center sm:px-6">
-          <Logo className="mx-auto h-20 w-auto" />
-          <p className="mt-6 text-[11px] tracking-[0.2em] text-wheat uppercase">{BRAND.name}</p>
-          <p className="mt-4 font-display text-5xl tracking-[0.14em] text-paper sm:text-7xl">
-            {BRAND.shortName}
-          </p>
-          <p className="mt-4 text-[11px] tracking-[0.2em] text-wheat uppercase">{BRAND.tagline}</p>
+          {/* The roundel carries the name, so neither the wordmark nor the name line
+              is repeated under it. */}
+          <Logo className="mx-auto h-24 w-auto" />
+          <p className="mt-6 text-[11px] tracking-[0.2em] text-wheat uppercase">{BRAND.tagline}</p>
 
           <div className="mt-12 border-t border-paper/15 pt-8 text-sm text-paper/70">
             <p>
