@@ -53,9 +53,16 @@ The prototype exists to tell this sequence. Every build decision should serve it
    This is the single most important moment in the demo. Make switching persona fast and obvious,
    ideally from the header, so it can be shown live without logging out.
 5. **Case ordering.** Quantity is in cases of 24, never single cans. Stepper control.
-6. **Mini cart.** Adding pops a small panel under the header cart icon with the lines, the
-   discount and the total. It times out when it appeared by itself, and stays when opened from
-   the icon. It must never cover the catalogue or block the next add.
+6. **Order side panel.** Adding opens a side panel on the right with the lines, quantity
+   steppers, remove, the discount and the total. It stays until closed so the customer can build
+   the order while browsing. The header cart icon toggles it.
+
+   Two rules it must keep, both learned the hard way. It never blocks the page: an early version
+   had a modal backdrop, so every add had to be dismissed before the next one. And it never covers
+   a product: from the large breakpoint up the page is inset by the panel's width and the
+   catalogue grid uses container queries, so it drops from six columns to five instead of hiding
+   two. Below that breakpoint there is no room to inset, so it overlays, which is normal on a
+   phone.
 7. **Cart and checkout.** Discounted line totals and order total. Company details prefilled from
    the account and editable: company name, organisation number, VAT number, contact, phone,
    invoicing email. Delivery address, requested delivery date, optional purchase order reference.
@@ -164,6 +171,8 @@ centred on a tinted tile. The `imageFit` field on each product picks between the
 
 - Branch: `claude/amazing-brown-kjrz6u`. Commit and push to it.
 - Keep fixtures in one place, `src/data/`, so content can be swapped without touching components.
+- The catalogue grid is driven by container queries on `<main>`, not viewport breakpoints, because
+  the order panel changes the content width. Do not convert it back to `sm:` / `lg:` variants.
 - Build the demo story end to end before polishing any single screen. A complete rough walkthrough
   is worth more than one beautiful screen and six missing ones.
 - Responsive matters. Judah may open this on a phone.

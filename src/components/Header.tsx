@@ -8,7 +8,8 @@ const navClass = ({ isActive }: { isActive: boolean }) =>
   `text-sm transition-colors ${isActive ? 'text-ink font-medium' : 'text-ink-2 hover:text-ink'}`
 
 export function Header() {
-  const { currentCustomer, cart, discountPct, logout, openCart } = usePortal()
+  const { currentCustomer, cart, discountPct, logout, openCart, closeCart, cartOpenedBy } =
+    usePortal()
   const cartCases = cart.reduce((sum, i) => sum + i.cases, 0)
 
   return (
@@ -63,8 +64,8 @@ export function Header() {
               </Link>
 
               <button
-                data-cart-toggle
-                onClick={openCart}
+                onClick={cartOpenedBy ? closeCart : openCart}
+                aria-expanded={cartOpenedBy !== null}
                 aria-label={`Your order, ${cartCases} cases`}
                 className="relative rounded-full border border-line bg-card p-2 text-ink-2 transition-colors hover:text-ink"
               >

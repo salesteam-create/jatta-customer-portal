@@ -1,17 +1,27 @@
 import { Outlet } from 'react-router-dom'
+import { usePortal } from '../state/portal'
 import { DemoBar } from './DemoBar'
 import { Header } from './Header'
 import { Logo } from './Logo'
-import { MiniCart } from './MiniCart'
+import { CartPanel } from './CartPanel'
 import { BRAND } from '../data/config'
 
 export function Layout() {
+  const { cartOpenedBy } = usePortal()
+
   return (
-    <div className="flex min-h-screen flex-col">
+    /* While the order panel is open the whole page is inset by its width, so the panel
+       never sits on top of a product. There is no room to do that on a small screen, so
+       below the large breakpoint the panel overlays instead. */
+    <div
+      className={`flex min-h-screen flex-col transition-[padding] duration-200 ${
+        cartOpenedBy ? 'lg:pr-[26rem]' : ''
+      }`}
+    >
       <DemoBar />
       <Header />
-      <MiniCart />
-      <main className="mx-auto w-full max-w-[90rem] flex-1 px-4 py-10 sm:px-6">
+      <CartPanel />
+      <main className="@container mx-auto w-full max-w-[90rem] flex-1 px-4 py-10 sm:px-6">
         <Outlet />
       </main>
       <footer className="no-print bg-brand text-paper">
