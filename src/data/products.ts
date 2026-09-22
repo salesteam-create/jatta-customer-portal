@@ -33,6 +33,10 @@ import blabaersafari from '../assets/products/blabaersafari.jpg'
 import bringebaersafari from '../assets/products/bringebaersafari.jpg'
 import laven from '../assets/products/laven.png'
 import nr2 from '../assets/products/nr2.png'
+import preikestolen from '../assets/products/preikestolen.jpg'
+import padda from '../assets/products/padda.jpg'
+import florli from '../assets/products/florli.jpg'
+import x3 from '../assets/products/x3.jpg'
 
 export const products: Product[] = [
   {
@@ -203,7 +207,98 @@ export const products: Product[] = [
     tastingNotes: 'Stone fruit, citrus, a soft rounded body.',
     available: true,
   },
+  {
+    id: 'p-preikestolen',
+    slug: 'preikestolen',
+    name: 'Preikestolen',
+    style: 'Blonde Ale',
+    styleNo: 'Pretty Pretty Blonde Ale',
+    category: 'Pale Ale',
+    tags: ['Fjord Icon Series', 'Blonde ale', 'Soft'],
+    abv: 4.5, // assumed, not legible on the can
+    ibu: 22,
+    volumeMl: 330,
+    caseSize: CASE_SIZE,
+    standardUnitPrice: 38,
+    image: preikestolen,
+    imageFit: 'cover',
+    shortDescription: 'Fjord Icon Series. Soft and approachable.',
+    description:
+      'Part of the Fjord Icon Series, named for the rock above Lysefjorden. An approachable blonde ale that suits a list needing something between a lager and a pale.',
+    tastingNotes: 'Honey, soft malt, a gentle hop lift.',
+    available: true,
+  },
+  {
+    id: 'p-padda',
+    slug: 'padda',
+    name: 'Pådda',
+    style: 'Berliner Weisse',
+    styleNo: 'Berliner weisse med ananas og vanilje',
+    category: 'Sour',
+    tags: ['Collab brew', 'Pineapple', 'Vanilla'],
+    abv: 4.5, // assumed, not legible on the can
+    ibu: 8,
+    volumeMl: 330,
+    caseSize: CASE_SIZE,
+    standardUnitPrice: 42,
+    image: padda,
+    imageFit: 'cover',
+    shortDescription: 'Berliner weisse with pineapple and vanilla.',
+    description:
+      'A collaboration brew. Tart, bright and fruit-led, with pineapple and vanilla softening the acidity.',
+    tastingNotes: 'Pineapple, vanilla, a clean sour edge.',
+    available: true,
+  },
+  {
+    id: 'p-florli',
+    slug: 'florli',
+    name: 'Flørli',
+    style: 'Sour',
+    styleNo: 'Sea to Summit Sour',
+    category: 'Sour',
+    tags: ['Sea to summit sour', 'Tart', 'Fruity'],
+    abv: 5.0, // assumed, not legible on the can
+    ibu: 10,
+    volumeMl: 330,
+    caseSize: CASE_SIZE,
+    standardUnitPrice: 44,
+    image: florli,
+    imageFit: 'cover',
+    shortDescription: 'Sea to summit sour. Tart and refreshing.',
+    description:
+      'Named for the stairway above Lysefjorden. A fruited sour with a sharp, refreshing finish and plenty of colour in the glass.',
+    tastingNotes: 'Red berry, tart acidity, a dry close.',
+    available: true,
+  },
+  {
+    id: 'p-x3',
+    slug: 'x3',
+    name: 'X3',
+    style: 'Double IPA',
+    styleNo: 'TDH DIPA',
+    category: 'IPA',
+    tags: ['Strong ale', 'Bold', 'Full-bodied'],
+    abv: 8.5, // from the can and an Untappd review quoted in the designs
+    ibu: 80,
+    volumeMl: 330,
+    caseSize: CASE_SIZE,
+    standardUnitPrice: 52,
+    image: x3,
+    imageFit: 'cover',
+    shortDescription: 'Triple dry hopped double IPA. Bold and full-bodied.',
+    description:
+      'A triple dry hopped double IPA at 8.5%, and one of the most highly rated beers in the range. Big, resinous and built for a short pour.',
+    tastingNotes: 'Resin, stone fruit, warming alcohol.',
+    available: true,
+  },
 ]
+
+/**
+ * Twelve products, which fills two complete rows at six across.
+ *
+ * All four of the later additions carry real photography lifted from the homepage
+ * export, so nothing here is invented artwork.
+ */
 
 /** Filter chips on the catalogue, matching the "Våre øl" grid in the designs. */
 export const categories = ['Alle', 'IPA', 'Pale Ale', 'Pilsner', 'Farmhouse', 'Sour'] as const

@@ -148,10 +148,16 @@ the tagline only.
 
 ## Product images
 
-`src/assets/products/` holds artwork cropped from the supplied exports. Six are flat square label
-designs, which fill the card. Låven and #2 are cut-out can renders on transparency, which are
-centred on a tinted tile. The `imageFit` field on each product picks between the two, and
+`src/assets/products/` holds artwork cropped from the supplied exports. Twelve products, which is
+two complete rows at six across.
+
+Three sources, all real, none invented. Six are flat square label designs from the supplied asset
+zips, which fill the card. Låven and #2 are cut-out can renders on transparency, centred on a
+tinted tile. Preikestolen, Pådda, Flørli and X3 are product photography cropped out of the
+homepage export. The `imageFit` field picks between the flat and cut-out treatments, and
 `ProductImage.tsx` is the only component that reads it.
+
+Keep the catalogue at a multiple of six, or the last row looks unfinished at full width.
 
 ## Content still needed from the client
 
@@ -162,8 +168,9 @@ centred on a tinted tile. The `imageFit` field on each product picks between the
 - [ ] Real ABVs, since every asset shows 4,7 %
 - [ ] A definitive product list, see BRD open question 20
 - [ ] Can volume confirmation
-- [ ] Artwork for the products not yet supplied (Kjekkas, X3, Herliga London, Preikestolen,
-      Skallegrim, Mangoflørt, Fjøsnisse, Pådda, Flørli, Helnorsk Rabarbra)
+- [ ] Artwork for the products still missing (Kjekkas, Herliga London, Skallegrim, Mangoflørt,
+      Fjøsnisse, Helnorsk Rabarbra). Kjekkas and Herliga London can be cropped from the homepage
+      export the same way the last four were, if more products are wanted.
 - [ ] Real trade customer names, or permission to keep the invented ones
 - [ ] Answer on the mixed 12 unit box rule, BRD open question 13
 
